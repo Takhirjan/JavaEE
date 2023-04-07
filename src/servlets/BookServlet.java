@@ -18,12 +18,14 @@ import java.util.ArrayList;
 public class BookServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    resp.setContentType("text/html");
+   /* resp.setContentType("text/html");
     PrintWriter out=resp.getWriter();
       out.print("<html");
       out.print("<head>");
     out.print("</title>Books</title>");
-      out.print("</head>");
+    out.print("<link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css'>");
+
+    out.print("</head>");
     out.print("<body>");
 
     out.print("<form action='/add-book' method='POST'>");
@@ -70,5 +72,10 @@ public class BookServlet extends HttpServlet {
 
     out.print("</body>");
     out.print("</html>");
+  }*/
+    ArrayList<Books> books=DBbooks.getBooks();
+    req.setAttribute("knigi",books);
+    req.getRequestDispatcher("books.jsp").forward(req,resp);
+
   }
 }
