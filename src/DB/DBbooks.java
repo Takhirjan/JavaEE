@@ -12,19 +12,22 @@ public class DBbooks {
         "Harry1",
         "Joane Rawling",
         "Fantasy",
-        5111)
+        5111,
+        "qwertyuisdfghjsdghj")
     );
     books.add(new Books(2,
         "Harry2",
         "Joane2 Rawling",
         "Horror",
-        5111)
+        5111,
+        "cvbnm,")
     );
     books.add(new Books(3,
         "Harry3",
         "Joane3 Iron man",
         "Comics",
-        5111)
+        5111,
+        "sdf")
     );
   }
 
@@ -36,5 +39,17 @@ public class DBbooks {
     books.add(book);
     id++;
   }
+  public  static Books getBook(int id){
+    return books.stream().filter(books1 -> books1.getId()==id).findFirst().orElse(null);
+  }
+  public static void updateBook(Books kitap){
+   for(int i=0;i<books.size();i++){
+     if(books.get(i).getId()== kitap.getId()){
+       books.set(i,kitap);
+       break;
+     }
+  }
+  }
+
 }
 

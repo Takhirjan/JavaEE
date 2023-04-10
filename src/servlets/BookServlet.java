@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 
 @WebServlet(value="/bookServlet")
-public class BookServlet extends HttpServlet {
+public class  BookServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
    /* resp.setContentType("text/html");

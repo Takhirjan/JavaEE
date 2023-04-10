@@ -6,6 +6,7 @@ public class Books {
   private String author;
   private String genre;
   private double price;
+  private String description;
 
   public Books(int id, String name, String author, String genre, double price) {
     this.id = id;
@@ -17,6 +18,15 @@ public class Books {
 
   public Books() {
 
+  }
+
+  public Books(int id, String name, String author, String genre, double price, String description) {
+    this.id = id;
+    this.name = name;
+    this.author = author;
+    this.genre = genre;
+    this.price = price;
+    this.description = description;
   }
 
   public int getId() {
@@ -59,6 +69,15 @@ public class Books {
     this.price = price;
   }
 
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   public void setPrice(double bookPrice) {
+
   }
 }

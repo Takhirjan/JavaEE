@@ -10,26 +10,31 @@ import models.Books;
 
 import java.io.IOException;
 
-@WebServlet(value="/add-book")
-public class AddBookServlet extends HttpServlet {
+@WebServlet(value = "/save-book")
+public class SaveBookServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    int id=Integer.parseInt(req.getParameter("book_id"));
     String name=req.getParameter("book_name");//вытащи мне параметр book_name из BookServlet
     String author=req.getParameter("book_author"); //getParametr возвращает только String
-    String price=req.getParameter("book_price");
+    double price=Double.parseDouble(req.getParameter("book_price"));
     String genre=req.getParameter("book_genre");
     String description=req.getParameter("book_description");
 
-    double bookPrice=Double.parseDouble(price);
+    Books books= DBbooks.getBook(id);
+    if(books!=null){
+      books.setName(name);
+      books.setAuthor(author);
+      books.setGenre(genre);
+      books.setPrice(price);
+      books.setDescription(description);
 
-    Books books=new Books();
-    books.setName(name);
-    books.setPrice(bookPrice);
-    books.setAuthor(author);
-    books.setGenre(genre);
-    books.setDescription(description);
+      DB.DBbooks.updateBook(books);
+      resp.sendRedirect("/details?book_id="+id);
+    }else{
+      resp.sendRedirect("/bookServlet");
+    }
 
-    DBbooks.addBook(books);
-    resp.sendRedirect("/bookServlet");
+
   }
 }

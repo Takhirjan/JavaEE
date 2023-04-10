@@ -10,77 +10,44 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <%@include file="head.jsp"%>
 </head>
 <body>
-<div class="container mt-3">
+<%@include file="navbar.jsp"%>
+<div class="container mt-5">
     <div class="row">
-        <div class="col-6 mx-auto">
-            <form action="/add-book" method="POST">
-                <div class="row">
-                    <div class="col-12">
-                        <label>NAME:</label>
+        <h4 class="text-center">
+           Welcome to <%=siteName%>
+        </h4>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addBook">
+                Add Books
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="addBook" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                       <%@include file="addform.jsp"%>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                        </div>
                     </div>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-12">
-                        <input type="text" class="form-control" name="book_name">
-                    </div>
-                </div>
-                <div class="row mt-2">
-                <div class="col-12">
-                    <label>Author</label>
-                </div>
-                </div>
-        <div class="row mt-2">
-            <div class="col-12">
-                <input type="text" class="form-control" name="book_author">
             </div>
         </div>
-                <div class="row mt-2">
-                    <div class="col-12">
-                        <label>Price</label>
-                    </div>
-                </div>
-
-                <div class="row mt-2">
-                    <div class="col-12">
-<select class="form-select" name="book_price"
-<%
-    for(int i=0;i<10000;i+=1000){
-%>
-                        <option><%=i%></option>
-<%
-    }
-%>
-
-></select>
-                    </div>
-                </div>
-                <div class="row mt-2">
-        <div class="col-12">
-            <label>GENRE:</label>
-        </div>
     </div>
-    <div class="row mt-2">
-        <div class="col-12">
-            <select class="form-select" name="book_genre">
-                <option>Fantasy</option>
-                <option>Horror</option>
-                <option>Comics</option>
-                <option>Roman</option>
-            </select>
-        </div>
-    </div>
-                <div class="row mt-3">
-                    <div class="col-12">
-                        <button class="btn btn-success">ADD BOOK</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-<div class="row">
+<div class="row mt-3">
     <div class="col-12">
         <table class="table table-striped table-hover">
             <thead>
@@ -90,6 +57,8 @@
                 <th>AUTHOR</th>
                 <th>GENRE</th>
                 <th>PRICE</th>
+                <th style="width: 10%;">DETAILS</th>
+
             </tr>
             </thead>
             <tbody>
@@ -104,6 +73,8 @@
                 <td><%=books.getAuthor()%></td>
                 <td> <%=books.getGenre()%></td>
                    <td> <%=books.getPrice() %>KZT</td>
+                <td><a class="btn btn-success btn-sm" href="/details?book_id=<%=books.getId()%>">DETAILS</a>
+                </td>
             </tr>
             <%
               }
@@ -114,5 +85,6 @@
     </div>
 </div>
 </div>
+
 </body>
 </html>
