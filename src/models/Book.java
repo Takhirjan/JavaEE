@@ -1,12 +1,18 @@
 package models;
 
 public class Book {
+
   private int id;
   private String name;
   private String author;
   private String genre;
   private double price;
+
   private String description;
+
+  public Book(){
+
+  }
 
   public Book(int id, String name, String author, String genre, double price) {
     this.id = id;
@@ -14,10 +20,6 @@ public class Book {
     this.author = author;
     this.genre = genre;
     this.price = price;
-  }
-
-  public Book() {
-
   }
 
   public Book(int id, String name, String author, String genre, double price, String description) {
@@ -65,7 +67,7 @@ public class Book {
     return price;
   }
 
-  public void setPrice() {
+  public void setPrice(double price) {
     this.price = price;
   }
 
@@ -75,9 +77,5 @@ public class Book {
 
   public void setDescription(String description) {
     this.description = description;
-  }
-
-  public void setPrice(double bookPrice) {
-
   }
 }

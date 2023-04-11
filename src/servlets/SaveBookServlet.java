@@ -30,9 +30,10 @@ public class SaveBookServlet extends HttpServlet {
       book.setGenre(genre);
       book.setDescription(description);
       DBbooks.updateBook(book);
-      response.sendRedirect("/details?book_id=" + id);
-    } else {
+//      response.sendRedirect("/details?book_id=" + id);
       response.sendRedirect("/bookServlet");
+
+
     }
   }
 }

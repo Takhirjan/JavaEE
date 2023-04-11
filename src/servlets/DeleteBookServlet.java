@@ -18,7 +18,7 @@ public class DeleteBookServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         DBbooks.deleteBook(id);
 
-        response.sendRedirect("/");
+        response.sendRedirect("/booksServlet");
 
     }
 }

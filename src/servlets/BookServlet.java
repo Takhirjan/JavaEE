@@ -16,7 +16,7 @@ import java.util.ArrayList;
 @WebServlet(value="/bookServlet")
 public class  BookServlet extends HttpServlet {
   @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
    /* resp.setContentType("text/html");
     PrintWriter out=resp.getWriter();
       out.print("<html");
@@ -72,9 +72,8 @@ public class  BookServlet extends HttpServlet {
     out.print("</body>");
     out.print("</html>");
   }*/
-    ArrayList<Book> books=DBbooks.getBooks();
-    req.setAttribute("knigi",books);
-    req.getRequestDispatcher("/books.jsp").forward(req,resp);
-
+    ArrayList<Book> books = DBbooks.getBooks();
+    request.setAttribute("knigi", books);
+    request.getRequestDispatcher("/books.jsp").forward(request, response);
   }
 }

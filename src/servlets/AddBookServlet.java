@@ -14,15 +14,15 @@ import java.io.IOException;
 public class AddBookServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String name=req.getParameter("book_name");//вытащи мне параметр book_name из BookServlet
-    String author=req.getParameter("book_author"); //getParametr возвращает только String
-    String price=req.getParameter("book_price");
-    String genre=req.getParameter("book_genre");
-    String description=req.getParameter("book_description");
+    String name = req.getParameter("book_name");                               //вытащи мне параметр book_name из BookServlet
+    String author = req.getParameter("book_author");                              //getParametr возвращает только String
+    String price = req.getParameter("book_price");
+    String genre = req.getParameter("book_genre");
+    String description = req.getParameter("book_description");
 
-    double bookPrice=Double.parseDouble(price);
+    double bookPrice = Double.parseDouble(price);
 
-    Book book=new Book();
+    Book book = new Book();
     book.setName(name);
     book.setPrice(bookPrice);
     book.setAuthor(author);
@@ -30,6 +30,8 @@ public class AddBookServlet extends HttpServlet {
     book.setDescription(description);
 
     DBbooks.addBook(book);
+
     resp.sendRedirect("/bookServlet");
+
   }
 }
