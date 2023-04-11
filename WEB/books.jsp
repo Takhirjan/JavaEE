@@ -1,5 +1,5 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="models.Books" %><%--
+<%@ page import="models.Book" %><%--
   Created by IntelliJ IDEA.
   User: HP
   Date: 07.04.2023
@@ -63,28 +63,28 @@
             </thead>
             <tbody>
             <%
-                ArrayList<Books> kitaptar=(ArrayList<Books>) request.getAttribute("knigi");
+                ArrayList<Book> kitaptar=(ArrayList<Book>) request.getAttribute("knigi");
             if(kitaptar!=null){
-              for(Books books:kitaptar){
+              for(Book book:kitaptar){
                 %>
             <tr>
-                <td><%=books.getId()%></td>
-                <td><%=books.getName()%></td>
-                <td><%=books.getAuthor()%></td>
-                <td> <%=books.getGenre()%></td>
-                   <td> <%=books.getPrice() %>KZT</td>
-                <td><a class="btn btn-success btn-sm" href="/details?book_id=<%=books.getId()%>">DETAILS</a>
+                <td><%=book.getId()%></td>
+                <td><%=book.getName()%></td>
+                <td><%=book.getAuthor()%></td>
+                <td><%=book.getGenre()%></td>
+                <td><%=book.getPrice()%> KZT</td>
+                <td>
+                    <a class="btn btn-success btn-sm" href="/details?book_id=<%=book.getId()%>">DETAILS</a>
                 </td>
             </tr>
             <%
-              }
-            }
+                    }
+                }
             %>
-        </tbody>
+            </tbody>
         </table>
     </div>
 </div>
 </div>
-
 </body>
 </html>

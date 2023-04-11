@@ -1,55 +1,63 @@
 package DB;
 
-import models.Books;
+import models.Book;
 
 import java.util.ArrayList;
 
 public class DBbooks {
+  private static final ArrayList<Book> books=  new ArrayList<>();
   private static int id=4; //4 потому что книг 3, 4 это следующее
-  private static final ArrayList<Books> books=  new ArrayList<>();
+
   static{
-    books.add(new Books(1,
+    books.add(new Book(1,
         "Harry1",
         "Joane Rawling",
         "Fantasy",
-        5111,
+        8000,
         "qwertyuisdfghjsdghj")
     );
-    books.add(new Books(2,
+    books.add(new Book(2,
         "Harry2",
         "Joane2 Rawling",
         "Horror",
-        5111,
+        9000,
         "cvbnm,")
     );
-    books.add(new Books(3,
+    books.add(new Book(3,
         "Harry3",
         "Joane3 Iron man",
         "Comics",
-        5111,
+        100000,
         "sdf")
     );
   }
 
-  public static ArrayList<Books> getBooks() {
+  public static ArrayList<Book> getBooks() {
     return books; //метод который возвращает список книг
   }
-  public static void addBook(Books book){
+  public static void addBook(Book book){
     book.setId(id);
     books.add(book);
     id++;
   }
-  public  static Books getBook(int id){
-    return books.stream().filter(books1 -> books1.getId()==id).findFirst().orElse(null);
+  public  static Book getBook(int id){
+    return books.stream().filter(book -> book.getId()==id).findFirst().orElse(null);
   }
-  public static void updateBook(Books kitap){
-   for(int i=0;i<books.size();i++){
-     if(books.get(i).getId()== kitap.getId()){
-       books.set(i,kitap);
-       break;
-     }
+  public static void updateBook(Book kitap) {
+    for (int i = 0; i < books.size(); i++) {
+      if (books.get(i).getId() == kitap.getId()) {
+        books.set(i, kitap);
+        break;
+      }
+    }
   }
+  public static void deleteBook(int id) {
+    for (int i = 0; i < books.size(); i++) {
+      if(books.get(i).getId()==id){
+        books.remove(i);
+        break;
+      }
+    }
   }
-
 }
 

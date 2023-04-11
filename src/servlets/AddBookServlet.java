@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.Books;
+import models.Book;
 
 import java.io.IOException;
 
@@ -22,14 +22,14 @@ public class AddBookServlet extends HttpServlet {
 
     double bookPrice=Double.parseDouble(price);
 
-    Books books=new Books();
-    books.setName(name);
-    books.setPrice(bookPrice);
-    books.setAuthor(author);
-    books.setGenre(genre);
-    books.setDescription(description);
+    Book book=new Book();
+    book.setName(name);
+    book.setPrice(bookPrice);
+    book.setAuthor(author);
+    book.setGenre(genre);
+    book.setDescription(description);
 
-    DBbooks.addBook(books);
+    DBbooks.addBook(book);
     resp.sendRedirect("/bookServlet");
   }
 }

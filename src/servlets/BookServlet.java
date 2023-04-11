@@ -6,10 +6,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.Books;
+import models.Book;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
@@ -73,9 +72,9 @@ public class  BookServlet extends HttpServlet {
     out.print("</body>");
     out.print("</html>");
   }*/
-    ArrayList<Books> books=DBbooks.getBooks();
+    ArrayList<Book> books=DBbooks.getBooks();
     req.setAttribute("knigi",books);
-    req.getRequestDispatcher("books.jsp").forward(req,resp);
+    req.getRequestDispatcher("/books.jsp").forward(req,resp);
 
   }
 }
