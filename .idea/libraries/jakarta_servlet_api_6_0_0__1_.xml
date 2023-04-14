@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/WEB/WEB-INF/lib/jakarta.servlet-api-6.0.0 (1).jar!/" />
       <root url="jar://$PROJECT_DIR$/WEB/WEB-INF/lib/javax.servlet.jsp-api-2.3.3 (1).jar!/" />
+      <root url="jar://$PROJECT_DIR$/WEB/WEB-INF/lib/mysql-connector-j-8.0.32.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

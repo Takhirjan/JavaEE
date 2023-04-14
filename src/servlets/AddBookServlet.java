@@ -1,6 +1,7 @@
 package servlets;
 
 import DB.DBbooks;
+import DB.DBconnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,8 +15,8 @@ import java.io.IOException;
 public class AddBookServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String name = req.getParameter("book_name");                               //вытащи мне параметр book_name из BookServlet
-    String author = req.getParameter("book_author");                              //getParametr возвращает только String
+    String name = req.getParameter("book_name");  //вытащи мне параметр book_name из BookServlet
+    String author = req.getParameter("book_author");//getParametr возвращает только String
     String price = req.getParameter("book_price");
     String genre = req.getParameter("book_genre");
     String description = req.getParameter("book_description");
@@ -29,7 +30,7 @@ public class AddBookServlet extends HttpServlet {
     book.setGenre(genre);
     book.setDescription(description);
 
-    DBbooks.addBook(book);
+    DBconnection.addBook(book);
 
     resp.sendRedirect("/bookServlet");
 

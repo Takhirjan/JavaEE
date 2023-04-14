@@ -1,6 +1,7 @@
 package servlets;
 
 import DB.DBbooks;
+import DB.DBconnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,9 +17,9 @@ public class DeleteBookServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         int id = Integer.parseInt(request.getParameter("id"));
-        DBbooks.deleteBook(id);
+        DBconnection.deleteBook(id);
 
-        response.sendRedirect("/booksServlet");
+        response.sendRedirect("/bookServlet");
 
     }
 }

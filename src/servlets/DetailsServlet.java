@@ -1,6 +1,7 @@
 package servlets;
 
 import DB.DBbooks;
+import DB.DBconnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,7 +22,7 @@ public class DetailsServlet extends HttpServlet {
     }catch (Exception e){
 
     }
-    Book book = DBbooks.getBook(id); //нашел с базы ID
+    Book book = DBconnection.getBook(id); //нашел с базы ID
     req.setAttribute("kniga",book);//пихнул под ключом kniga для details.jsp
     req.getRequestDispatcher("/details.jsp").forward(req,resp);
   }

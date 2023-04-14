@@ -1,6 +1,7 @@
 package servlets;
 
 import DB.DBbooks;
+import DB.DBconnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -22,14 +23,14 @@ public class SaveBookServlet extends HttpServlet {
     String genre = request.getParameter("book_genre");
     String description = request.getParameter("book_description");
 
-    Book book = DBbooks.getBook(id);
+    Book book = DBconnection.getBook(id);
     if (book != null) {
       book.setName(name);
       book.setAuthor(author);
       book.setPrice(price);
       book.setGenre(genre);
       book.setDescription(description);
-      DBbooks.updateBook(book);
+      DBconnection.updateBook(book);
 //      response.sendRedirect("/details?book_id=" + id);
       response.sendRedirect("/bookServlet");
 
