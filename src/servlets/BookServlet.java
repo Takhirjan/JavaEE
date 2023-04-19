@@ -1,5 +1,6 @@
 package servlets;
 
+import DB.Author;
 import DB.DBbooks;
 import DB.DBconnection;
 import jakarta.servlet.ServletException;
@@ -75,6 +76,8 @@ public class  BookServlet extends HttpServlet {
   }*/
     ArrayList<Book> books = DBconnection.getBooks();
     request.setAttribute("knigi", books);
+    ArrayList<Author> authors=DBconnection.getAuthors();
+    request.setAttribute("avtory",authors);
     request.getRequestDispatcher("/books.jsp").forward(request, response);
   }
 }

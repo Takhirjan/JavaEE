@@ -66,7 +66,7 @@
                 <tr>
                     <td><%=book.getId()%></td>
                     <td><%=book.getName()%></td>
-                    <td><%=book.getAuthor()%></td>
+                    <td><%=book.getAuthor().getFirstname()+" "+book.getAuthor().getLastname()%></td>
                     <td><%=book.getGenre()%></td>
                     <td><%=book.getPrice()%> KZT</td>
                     <td>

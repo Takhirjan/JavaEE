@@ -38,7 +38,7 @@
             </div>
             <div class="row mt-2">
                 <div class="col-12">
-                    <input type="text" class="form-control" readonly value="<%=book.getAuthor()%>" >
+                    <input type="text" class="form-control" readonly value="<%=book.getAuthor().getFirstname()+" "+book.getAuthor().getLastname()%>" >
                 </div>
             </div>
             <div class="row mt-3">
@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col-12">
-                                        <input type="text" class="form-control" name="book_author" value="<%=book.getAuthor()%>">
+                                        <input type="text" class="form-control" name="book_author" value="<%=book.getAuthor().getLastname()+" "+book.getAuthor().getFirstname()%>">
                                     </div>
                                 </div>
                                 <div class="row mt-3">
