@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,6 +25,10 @@ public class HomeServlet extends HttpServlet {
     out.print("<a href='/task1_7'><h1>TASK 1.7</h1></a>");
     out.print("<a href='/bookServlet'><h1>BookServlet</h1></a>");
     out.print("<a href='/some-servlet'><h1>SomeServlet</h1></a>");
+
+    HttpSession session= req.getSession();
+    String text=(String) session.getAttribute("username");
+    System.out.println(text);
   }
 
 }

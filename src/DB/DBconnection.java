@@ -1,6 +1,8 @@
 package DB;
 
+import models.Author;
 import models.Book;
+import models.User;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -198,4 +200,25 @@ public class DBconnection {
             e.printStackTrace();
           }
         }
+  public static User getUser(String email){
+    User user=null;
+    try{
+      PreparedStatement statement= connection.prepareStatement(""+
+          "select *from users where email=?");
+      statement.setString(1,email);
+      ResultSet resultSet=statement.executeQuery();
+      if(resultSet.next()){
+        user=new User();
+        user.setId(resultSet.getLong("id"));
+        user.setFullname(resultSet.getString("full_name"));
+        user.setPassword(resultSet.getString("password"));
+        user.setEmail(resultSet.getString("email"));
+
+      }
+      statement.close();
+    }catch (Exception e){
+      e.printStackTrace();
+    }
+    return user;
+  }
       }
