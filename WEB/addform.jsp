@@ -1,4 +1,4 @@
-<%@ page import="DB.Author" %>
+<%@ page import="models.Author" %>
 <form action="/add-book" method="post">
     <div class="row">
         <div class="col-12">

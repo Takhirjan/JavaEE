@@ -1,4 +1,4 @@
-<%--
+<%@ page import="models.User" %><%--
   Created by IntelliJ IDEA.
   User: HP
   Date: 10.04.2023
@@ -11,6 +11,10 @@
     <title>Navbar</title>
 </head>
 <body>
+<%
+    User currentUser= (User) session.getAttribute("currentUser");
+
+%>
 <nav class="navbar navbar-expand-lg bg-success navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/"><%=siteName%></a>
@@ -22,9 +26,41 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/bookServlet">Home</a>
                 </li>
+                <%
+                    if(currentUser!=null){
+                %>
                 <li class="nav-item">
                     <a class="nav-link" href="/add-book-page">Add Book</a>
                 </li>
+                <%
+                    }
+                %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/authors">Authors</a>
+                </li>
+                <%
+                    if(currentUser!=null){
+                %>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                       <%=currentUser.getFullname()%>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                        <li><a class="dropdown-item" href="/settings"> Settigs</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/logout"> Logout</a></li>
+                    </ul>
+                </li>
+                <%
+                    }else{
+                %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <%
+                    }
+                %>
             </ul>
 
         </div>

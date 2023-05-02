@@ -1,4 +1,4 @@
-package DB;
+package models;
 
 public class Author {
   private int id;

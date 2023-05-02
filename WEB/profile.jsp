@@ -12,10 +12,12 @@
     <%@include file="head.jsp"%>
 </head>
 <body>
+<%--<%    User currentUser= (User) session.getAttribute("currentUser");--%>
+<%--%>--%>
 <%@include file="navbar.jsp"%>
 <div class="row">
     <div class="col-12 mx-auto">
-        <h1>Hello User</h1>
+        <h1>Hello <%=currentUser.getFullname()%></h1>
     </div>
 </div>
 

@@ -71,6 +71,9 @@
                     <textarea class="form-control" readonly rows="10"><%=book.getDescription()%></textarea>
                 </div>
             </div>
+            <%
+                if(currentUser!=null){
+            %>
             <div class="row mt-3">
                 <div class="col-12">
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editBook">
@@ -190,6 +193,9 @@
                     </div>
                 </div>
             </div>
+            <%
+                }
+            %>
         </div>
     </div>
     <%

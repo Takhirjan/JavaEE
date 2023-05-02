@@ -38,7 +38,7 @@
             </div>
             <div class="row mt-2">
                 <div class="col-12">
-                    <input type="text" class="form-control" readonly value="<%=book.getAuthor()%>" >
+                    <input type="text" class="form-control" readonly value="<%=book.getAuthor().getFirstname()+" "+book.getAuthor().getLastname()%>" >
                 </div>
             </div>
             <div class="row mt-3">
@@ -71,6 +71,9 @@
                     <textarea class="form-control" readonly rows="10"><%=book.getDescription()%></textarea>
                 </div>
             </div>
+            <%
+                if(currentUser!=null){
+            %>
             <div class="row mt-3">
                 <div class="col-12">
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editBook">
@@ -130,7 +133,7 @@
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col-12">
-                                        <input type="text" class="form-control" name="book_author" value="<%=book.getAuthor()%>">
+                                        <input type="text" class="form-control" name="book_author" value="<%=book.getAuthor().getLastname()+" "+book.getAuthor().getFirstname()%>">
                                     </div>
                                 </div>
                                 <div class="row mt-3">
@@ -190,6 +193,9 @@
                     </div>
                 </div>
             </div>
+            <%
+                }
+            %>
         </div>
     </div>
     <%

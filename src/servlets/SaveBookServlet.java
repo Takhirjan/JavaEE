@@ -1,7 +1,6 @@
 package servlets;
 
-import DB.Author;
-import DB.DBbooks;
+import models.Author;
 import DB.DBconnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.Book;
+import models.User;
 
 import java.io.IOException;
 
@@ -17,6 +17,8 @@ public class SaveBookServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    User user= (User) request.getSession().getAttribute("currentUser");
+    if(user!=null) {
     int id = Integer.parseInt(request.getParameter("book_id"));
     String name = request.getParameter("book_name");
     int authorID = Integer.parseInt(request.getParameter("book_author"));
@@ -36,7 +38,9 @@ public class SaveBookServlet extends HttpServlet {
 //      response.sendRedirect("/details?book_id=" + id);
       response.sendRedirect("/bookServlet");
 
-
+    }
+    }else{
+      response.sendRedirect("/login");
     }
   }
 }

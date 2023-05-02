@@ -1,5 +1,5 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="DB.Author" %>
+<%@ page import="models.Author" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

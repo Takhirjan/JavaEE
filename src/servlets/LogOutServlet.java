@@ -1,5 +1,6 @@
 package servlets;
 
+import DB.DBconnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,17 +12,11 @@ import models.User;
 import java.io.IOException;
 
 
-@WebServlet(value = "/profile")
-public class ProfileServlet extends HttpServlet {
+@WebServlet(value = "/logout")
+public class LogOutServlet extends HttpServlet  {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    HttpSession session= req.getSession();
-    User currentUser= (User) req.getSession().getAttribute("currentUser");
-    if(currentUser!=null){
-      req.getRequestDispatcher("/profile.jsp").forward(req,resp);
-    }else{
-
-    }
+    req.getSession().removeAttribute("currentUser");
     resp.sendRedirect("/login");
   }
 }

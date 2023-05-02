@@ -1,7 +1,6 @@
 package servlets;
 
-import DB.Author;
-import DB.DBbooks;
+import models.Author;
 import DB.DBconnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

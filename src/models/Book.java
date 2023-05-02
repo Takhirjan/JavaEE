@@ -1,7 +1,5 @@
 package models;
 
-import DB.Author;
-
 public class Book {
 
   private int id;

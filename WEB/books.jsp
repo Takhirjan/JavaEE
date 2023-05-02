@@ -22,6 +22,9 @@
     </div>
     <div class="row mt-3">
         <div class="col-12">
+            <%
+                if(currentUser!=null){
+            %>
             <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addBook">
                 + Add Book
             </button>
@@ -42,6 +45,9 @@
                     </div>
                 </div>
             </div>
+            <%
+                }
+            %>
         </div>
     </div>
     <div class="row mt-3">
