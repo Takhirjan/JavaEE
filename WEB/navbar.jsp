@@ -15,6 +15,7 @@
     User currentUser= (User) session.getAttribute("currentUser");
 
 %>
+<%@include file="user.jsp"%>
 <nav class="navbar navbar-expand-lg bg-success navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/"><%=siteName%></a>
@@ -29,6 +30,7 @@
                 <%
                     if(currentUser!=null){
                 %>
+
                 <li class="nav-item">
                     <a class="nav-link" href="/add-book-page">Add Book</a>
                 </li>
@@ -57,6 +59,9 @@
                 %>
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
                 </li>
                 <%
                     }

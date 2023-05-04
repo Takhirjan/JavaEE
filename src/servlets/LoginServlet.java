@@ -25,6 +25,7 @@ public class LoginServlet extends HttpServlet  {
     String email=req.getParameter("email");
     String password=req.getParameter("password");
 
+
     User user= DBconnection.getUser(email);
 
     if(user!=null && user.getPassword().equals(password)){

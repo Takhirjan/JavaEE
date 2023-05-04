@@ -213,6 +213,7 @@ public class DBconnection {
         user.setFullname(resultSet.getString("full_name"));
         user.setPassword(resultSet.getString("password"));
         user.setEmail(resultSet.getString("email"));
+        user.setRole(resultSet.getInt("role_id"));
 
       }
       statement.close();
@@ -220,5 +221,24 @@ public class DBconnection {
       e.printStackTrace();
     }
     return user;
+  }
+  public static void addUser(User user) {
+    try {
+
+      PreparedStatement statement = connection.prepareStatement("" +
+          "INSERT INTO users (email, password, full_name) " +
+          "VALUES (?, ?, ?)");
+
+      statement.setString(1, user.getEmail());
+      statement.setString(2, user.getPassword());
+      statement.setString(3, user.getFullname());
+//      statement.setInt(4, user.getRole());
+
+      statement.executeUpdate();
+      statement.close();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
       }

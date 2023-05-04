@@ -18,8 +18,6 @@ public class AddBookPAgeServlet extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     User user= (User) req.getSession().getAttribute("currentUser");
     if(user!=null) {
-
-
       ArrayList<Author> authors = DBconnection.getAuthors();
       req.setAttribute("avtory", authors);
       req.getRequestDispatcher("/addbook.jsp").forward(req, resp);
