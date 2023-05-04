@@ -288,4 +288,35 @@ public class DBconnection {
     }
     return news;
   }
+  public static News getNewsById (Long id) {
+    News news=null;
+    try {
+      PreparedStatement statement= connection.prepareStatement(""+
+          "SELECT n.id,n.title,n.content,n.user_id,u.full_name,n.post_date"+
+          " FROM news n "+
+          " INNER join users u ON u.id=n.user_id "+
+          " WHERE n.id = ?");
+
+      statement.setLong(1,id);
+      ResultSet resultSet= statement.executeQuery();
+      if(resultSet.next()){
+        news =new News();
+        news.setId(resultSet.getLong("id"));
+        news.setTitle(resultSet.getString("title"));
+        news.setContent(resultSet.getString("content"));
+        news.setPostdate(resultSet.getTimestamp("post_date"));
+
+        User user=new User();
+        user.setId(resultSet.getLong("user_id"));
+        user.setFullname(resultSet.getString("full_name"));
+        news.setUser(user);
+
+
+      }
+      statement.close();
+    }catch (Exception e){
+      e.printStackTrace();
+    }
+    return news;
+  }
 }
