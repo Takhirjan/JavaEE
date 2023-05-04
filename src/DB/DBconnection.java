@@ -2,6 +2,7 @@ package DB;
 
 import models.Author;
 import models.Book;
+import models.News;
 import models.User;
 
 import java.sql.Connection;
@@ -241,4 +242,50 @@ public class DBconnection {
       e.printStackTrace();
     }
   }
+  public static void addNews(News news){
+      try{
+      PreparedStatement statement=connection.prepareStatement(""+
+          "INSERT INTO news (title,content,post_date,user_id) " +
+          "VALUES(?,?,NOW(),?)");
+      statement.setString(1,news.getTitle());
+      statement.setString(2,news.getContent());
+      statement.setLong(3,news.getUser().getId());
+
+      statement.executeUpdate();
+      statement.close();
+
+      }catch (Exception e){
+        e.printStackTrace();
       }
+  }
+  public static ArrayList<News> getNews () {
+    ArrayList<News> news=new ArrayList<>();
+    try {
+  PreparedStatement statement= connection.prepareStatement(""+
+      "SELECT n.id,n.title,n.content,n.user_id,u.full_name,n.post_date"+
+      " FROM news n "+
+      " INNER join users u ON u.id=n.user_id "+
+      "ORDER BY n.post_date desc");
+
+      ResultSet resultSet= statement.executeQuery();
+      while(resultSet.next()){
+      News n=new News();
+      n.setId(resultSet.getLong("id"));
+      n.setTitle(resultSet.getString("title"));
+      n.setContent(resultSet.getString("content"));
+      n.setPostdate(resultSet.getTimestamp("post_date"));
+
+      User user=new User();
+      user.setId(resultSet.getLong("user_id"));
+      user.setFullname(resultSet.getString("full_name"));
+      n.setUser(user);
+
+      news.add(n);
+      }
+      statement.close();
+    }catch (Exception e){
+      e.printStackTrace();
+    }
+    return news;
+  }
+}

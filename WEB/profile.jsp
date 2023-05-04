@@ -17,7 +17,7 @@
 <%@include file="navbar.jsp"%>
 <div class="row">
     <div class="col-12 mx-auto">
-        <h1>Hello <%=currentUser.getFullname()%></h1>
+        <h1 class="text-center">Hello <%=currentUser.getFullname()%></h1>
     </div>
 </div>
 

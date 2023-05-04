@@ -27,6 +27,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/bookServlet">Home</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/news">All News</a>
+                </li>
                 <%
                     if(currentUser!=null){
                 %>
@@ -34,6 +37,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/add-book-page">Add Book</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/add-news-page">Add News</a>
+                </li>
+
                 <%
                     }
                 %>

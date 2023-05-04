@@ -15,12 +15,18 @@
                     Welcome to <%=siteName%>
                 </h4>
             </div>
+
             <div class="row mt-3">
                 <div class="col-12">
+                    <%
+                        if(currentUser!=null){
+                    %>
                     <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addAuthor">
                        + Add Authors
                     </button>
-
+                        <%
+                            }
+                        %>
                     <div class="modal fade" id="addAuthor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
