@@ -24,6 +24,7 @@ public class RegisterServlet extends HttpServlet {
     String rePassword = req.getParameter("re_password");
     String fullName = req.getParameter("full_name");
 
+
     User user = DBconnection.getUser(email);
 
     if(user==null){

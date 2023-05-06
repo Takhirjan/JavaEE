@@ -17,7 +17,7 @@ public class AddBookServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     User user= (User) req.getSession().getAttribute("currentUser");
-    if(user!=null) {
+    if(user!=null && user.getRole()==1) {
 
       String name = req.getParameter("book_name");  //вытащи мне параметр book_name из BookServlet
       int author_id = Integer.parseInt(req.getParameter("book_author"));//getParametr возвращает только String

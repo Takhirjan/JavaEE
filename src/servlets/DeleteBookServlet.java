@@ -18,7 +18,7 @@ public class DeleteBookServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         User user= (User) request.getSession().getAttribute("currentUser");
-        if(user!=null) {
+        if(user!=null && user.getRole()==1) {
             int id = Integer.parseInt(request.getParameter("id"));
             DBconnection.deleteBook(id);
 

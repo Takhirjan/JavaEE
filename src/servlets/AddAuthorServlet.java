@@ -16,7 +16,7 @@ public class AddAuthorServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     User currentUser = (User) req.getSession().getAttribute("currentUser");
-    if (currentUser != null) {
+    if (currentUser != null && currentUser.getRole()==1) {
       String name = req.getParameter("first_name");
       String surname = req.getParameter("last_name");
       String instagram = req.getParameter("instagram");

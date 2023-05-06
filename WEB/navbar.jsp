@@ -33,10 +33,16 @@
                 <%
                     if(currentUser!=null){
                 %>
+                <%
+                    if(currentUser.getRole()==1){
+                %>
 
                 <li class="nav-item">
                     <a class="nav-link" href="/add-book-page">Add Book</a>
                 </li>
+                <%
+                    }
+                %>
                 <li class="nav-item">
                     <a class="nav-link" href="/add-news-page">Add News</a>
                 </li>
