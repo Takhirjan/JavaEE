@@ -12,6 +12,7 @@
     <%@include file="head.jsp"%>
 </head>
 <body>
+<%@include file="navbar.jsp"%>
 <div class="container mt-3">
     <div class="row">
         <div class="col-6 mx-auto">

@@ -319,4 +319,22 @@ public class DBconnection {
     }
     return news;
   }
+  public static void updateNews(News news) {
+    try {
+
+      PreparedStatement statement = connection.prepareStatement("" +
+          "UPDATE news SET title = ?, content = ? " +
+          "WHERE id = ?");
+
+      statement.setString(1, news.getTitle());
+      statement.setString(2, news.getContent());
+      statement.setLong(3, news.getId());
+
+      statement.executeUpdate();
+      statement.close();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 }
