@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import models.Comment;
 import models.News;
 
 import java.io.IOException;
@@ -19,6 +20,11 @@ public class NewsDetailsServlet extends HttpServlet {
     Long id= Long.parseLong(req.getParameter("id"));
     News news=DBconnection.getNewsById(id);
     req.setAttribute("news",news);
+
+   if(news!=null){
+     ArrayList<Comment> comments=DBconnection.getComments(news.getId());
+     req.setAttribute("comments",comments);
+   }
     req.getRequestDispatcher("/newsdetails.jsp").forward(req,resp);
   }
 }

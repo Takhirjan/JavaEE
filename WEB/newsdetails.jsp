@@ -1,6 +1,5 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="models.Book" %>
-<%@ page import="models.News" %><%--
+<%@ page import="models.*" %><%--
   Created by IntelliJ IDEA.
   User: HP
   Date: 07.04.2023
@@ -97,11 +96,50 @@
                     <%
                         }
                     %>
-                        </div>
-                    </div>
                 </div>
-
+                    <%
+                        if(currentUser!=null){
+                    %>
+                    <form action="/add-comment" method="post">
+                        <input type="hidden" name="news_id" value="<%=news.getId()%>">
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <textarea class="form-control" name="comment"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <button class="btn btn-success btn sm">ADD COMMENT</button>
+                            </div>
+                        </div>
+                    </form>
             </div>
+                <%
+                    }
+                %>
+<div class="row">
+    <div class="col-12">
+        <%
+            ArrayList<Comment> comments= (ArrayList<Comment>) request.getAttribute("comments");
+            if(comments!=null){
+              for(Comment comment: comments){
+
+        %>
+        <div class="list-group">
+            <a href="JavaScript:void(0)" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><%=comment.getUser().getFullname()%></h5>
+                    <small class="text-body-secondary"><%=comment.getPostdate()%></small>
+                </div>
+                <p class="mb-1"><%=comment.getComment()%></p>
+            </a>
+        </div>
+        <%
+                }
+            }
+        %>
+</div>
+</div>
             <%
 
                 }

@@ -1,9 +1,6 @@
 package DB;
 
-import models.Author;
-import models.Book;
-import models.News;
-import models.User;
+import models.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -336,5 +333,62 @@ public class DBconnection {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+  public static void addComment(Comment comment){
+      try{
+        PreparedStatement statement=connection.prepareStatement(""+
+            "INSERt INTO comments(comment,user_id,news_id,post_date) " +
+            "VALUES (?,?,?,NOW())");
+
+        statement.setString(1,comment.getComment());
+        statement.setLong(2,comment.getUser().getId());
+        statement.setLong(3,comment.getNews().getId());
+
+        statement.executeUpdate();
+        statement.close();
+      }catch (Exception e){
+        e.printStackTrace();
+      }
+  }
+  public static ArrayList<Comment> getComments(Long newsId) {
+
+    ArrayList<Comment> comments = new ArrayList<>();
+
+    try {
+
+      PreparedStatement statement = connection.prepareStatement("" +
+          "SELECT co.id, co.comment, co.post_date, co.news_id, co.user_id, u.full_name " +
+          "FROM comments co " +
+          "INNER JOIN users u ON u.id = co.user_id " +
+          "WHERE co.news_id = ? " +
+          "ORDER BY co.post_date DESC");
+
+      statement.setLong(1, newsId);
+
+      ResultSet resultSet = statement.executeQuery();
+
+      while (resultSet.next()) {
+
+        Comment comment = new Comment();
+        comment.setId(resultSet.getLong("id"));
+        comment.setComment(resultSet.getString("comment"));
+        comment.setPostdate(resultSet.getTimestamp("post_date"));
+        User user = new User();
+        user.setId(resultSet.getLong("user_id"));
+        user.setFullname(resultSet.getString("full_name"));
+        comment.setUser(user);
+
+        News news = new News();
+        news.setId(resultSet.getLong("news_id"));
+        comment.setNews(news);
+
+        comments.add(comment);
+      }
+      statement.close();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return comments;
   }
 }
