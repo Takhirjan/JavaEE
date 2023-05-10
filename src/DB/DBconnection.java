@@ -391,4 +391,39 @@ public class DBconnection {
     }
     return comments;
   }
+  public static ArrayList<Book> SearchBooks(String key){
+    ArrayList<Book> books=new ArrayList<>(); //2  //Сохраняю запрос select from books
+    try{
+      PreparedStatement statement= connection.prepareStatement(
+          "select bo.id, bo.name,bo.genre,bo.price,bo.description,bo.author_id,a.first_name,a.last_name,a.instagram " +
+              "FROM books as bo "+
+              "inner join authors a on bo.author_id = a.id " +
+              "where LOWER(bo.name) LIKE LOWER(?) " +
+              " order by bo.price desc"); // 1
+
+      statement.setString(1,key);
+      ResultSet resultSet=statement.executeQuery(); // весь результат из 1 попадает сюда
+      while (resultSet.next()){       //Должен провести итерацию и закинуть каждый resultset в Arraylist
+        Book book=new Book();
+        book.setId(resultSet.getInt("id"));
+        book.setName(resultSet.getString("name"));
+        book.setGenre(resultSet.getString("genre"));
+        book.setDescription(resultSet.getString("description"));
+        book.setPrice(resultSet.getDouble("price"));
+
+        Author author=new Author();
+        author.setId(resultSet.getInt("author_id"));
+        author.setLastname(resultSet.getString("last_name"));
+        author.setFirstname(resultSet.getString("first_name"));
+        author.setInstagram(resultSet.getString("instagram"));
+
+        book.setAuthor(author);
+        books.add(book);
+      }
+      statement.close();
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+    return books;
+  }
 }

@@ -73,8 +73,15 @@ public class  BookServlet extends HttpServlet {
     out.print("</body>");
     out.print("</html>");
   }*/
-    ArrayList<Book> books = DBconnection.getBooks();
-    request.setAttribute("knigi", books);
+
+    String key=request.getParameter("key");
+    if(key!=null){
+      ArrayList<Book> books = DBconnection.SearchBooks("%"+key+"%");
+      request.setAttribute("knigi", books);
+    }else {
+      ArrayList<Book> books = DBconnection.getBooks();
+      request.setAttribute("knigi", books);
+    }
     ArrayList<Author> authors=DBconnection.getAuthors();
     request.setAttribute("avtory",authors);
     request.getRequestDispatcher("/books.jsp").forward(request, response);
